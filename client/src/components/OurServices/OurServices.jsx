@@ -7,7 +7,7 @@ const OurServices = () => {
     {/* Background Video */}
     <video
       className="absolute inset-0 w-full h-full object-cover"
-      src="https://videos.pexels.com/video-files/2257010/2257010-uhd_2560_1440_24fps.mp4"
+      src="https://videos.pexels.com/video-files/6979847/6979847-sd_960_506_30fps.mp4"
       autoPlay
       loop
       muted

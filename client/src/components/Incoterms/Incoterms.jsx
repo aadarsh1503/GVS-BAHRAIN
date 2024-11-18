@@ -52,7 +52,7 @@ function Incoterms() {
       The seller merely makes the goods available to the buyer at his/her home within the established period and is not  responsible for the clearance for export or <br /> for loading the goods onto any collection vehicle. Usable in any mode of transport.
       <br />
       <br />
-      Note: since the foreign buyer does not have the legal conditions to arrange for customs clearance for goods to leave the country, it is understood that this < br /> measure is adopted by the seller, at his/her own expense and risk, in the case of< br /> UAE exports.
+      Note: since the foreign buyer does not have the legal conditions to arrange for customs clearance for goods to leave the country, it is understood that this < br /> measure is adopted by the seller, at his/her own expense and risk, in the case of< br /> BAHRAIN exports.
     </>
   }
 />
@@ -68,7 +68,7 @@ function Incoterms() {
       The seller completes his obligations and ends his liability when he delivers the goods, cleared for export, to the carrier or to another person indicated by< br/> the buyer, at the named place in the country of origin. Usable in any mode of transport.
       <br />
       <br />
-      Note: since the foreign buyer does not have the legal conditions to arrange for customs clearance for goods to leave the country, it is understood that this < br/> measure is adopted by the seller, at his/her own expense and risk, in the case of UAE exports.
+      Note: since the foreign buyer does not have the legal conditions to arrange for customs clearance for goods to leave the country, it is understood that this < br/> measure is adopted by the seller, at his/her own expense and risk, in the case of BAHRAIN exports.
       <br />
       <br />
       <strong className='text-3xl mt-2'>FAS – Free Along Side Ship</strong>
@@ -140,7 +140,7 @@ function Incoterms() {
       The seller, in addition to customs clearance, assumes all risks and costs, including taxes, fees, and other charges incident on import. Usable in any mode of transport.
       <br />
       <br />
-      <strong className='text-xl mt-10'>Note:</strong> Since the foreign seller does not have the legal conditions to arrange customs clearance for the entry of goods into the country, this term cannot be used for UAEimports. DAT or DAP must be chosen if a condition regulated by the ICC is preferred.
+      <strong className='text-xl mt-10'>Note:</strong> Since the foreign seller does not have the legal conditions to arrange customs clearance for the entry of goods into the country, this term cannot be used for Bahrainimports. DAT or DAP must be chosen if a condition regulated by the ICC is preferred.
     </>
   }
 />

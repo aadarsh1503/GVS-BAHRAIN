@@ -9,19 +9,19 @@ const Cards = () => {
       id: 1,
       title: 'Air',
       description: 'With safety, speed and transparency, GVS Cargo & Logistics collects, accommodates, ships, tracks and delivers anywhere in the world.',
-      src: aero, // No braces here
+      src: "https://cdn.culture.ru/images/d6a11be6-6939-546c-968f-ca2ea9e22ee9", // No braces here
     },
     {
       id: 2,
       title: 'Road',
       description: 'GVS Cargo & Logistics is widely consolidated to offer you its entire infrastructure in road freight transport services.',
-      src: Truck, // No braces here
+      src: "https://avatars.mds.yandex.net/i?id=6cfadd1edd5c9770f100d2b15852ed04_l-8526247-images-thumbs&ref=rim&n=13&w=2560&h=1707", // No braces here
     },
     {
       id: 3,
       title: 'Maritime',
       description: 'We offer the best conditions for chartering ships for special cargo and/or IMO (Cargo of dangerous goods).',
-      src: boat, // No braces here
+      src: "https://avatars.mds.yandex.net/get-ydo/1523397/2a0000016c14ffe64d4a1618c43a5c5efeb5/diploma", // No braces here
     },
   ];
   

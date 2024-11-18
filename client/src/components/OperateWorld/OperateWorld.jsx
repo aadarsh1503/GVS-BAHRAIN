@@ -2,7 +2,7 @@ import React from 'react';
 import Bounce from '../Bounce/Bounce';
 import Slide from '../Slide/Slide';
 import ColorBar from '../Colorbar/Colorbar';
-import Maps from "./Maps.jpg"
+import Maps from "./Maps.png"
 
 const OperateWorld = () => {
   return (

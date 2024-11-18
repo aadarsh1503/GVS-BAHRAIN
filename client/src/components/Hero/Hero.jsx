@@ -23,7 +23,10 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Hero.css"; // Your CSS file for custom styles
 import Slider from 'react-slick';
 
-const images = [one, two, three, four, five];
+const images = ["https://klikpajak.id/wp-content/uploads/2018/09/KlikPajak_Blog_Tarif-PPh-Impor-Akan-Naik-Ketahui-Penjelasan-Tarif-dan-Tujuannya.jpg",
+   "https://actionfreightinc.com/wp-content/uploads/2017/06/slide-2-plane-front.jpg",
+    "https://www.mysupplychaingroup.com/wp-content/uploads/2018/12/mysupplychaingroup-warehouse-2.jpg",
+     "https://wscdn-01.kapsarc.org/wp-content/uploads/2020/04/shutterstock_731927092.png", "https://cleanairpower.com/images/banners/banner-2.jpg"];
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -75,7 +78,7 @@ const Hero = () => {
 
   return (
     <div>
-<div className="mx-auto px-1 min-h-screen relative">
+<div className="mx-auto  min-h-screen relative">
   {isLoaded ? (
     <Slider ref={sliderRef} {...settings} className="image-container">
       {images.map((src, index) => (
@@ -122,7 +125,7 @@ in various types of customs processes and
 on all continents.
           </p>
           <a href='/contactUs'>
-          <button className="bg-DarkYellow lg:ml-56 text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-yellow-500 transition duration-300">
+          <button className="bg-DarkYellow lg:ml-56 lg:mt-10 mt-0 text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-yellow-500 transition duration-300">
             Contact Us
           </button>
           </a>
@@ -131,8 +134,8 @@ on all continents.
         
 
         <div className="mt-8 md:mt-0 md:w-1/2 flex justify-center">
-          <div className="relative w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden">
-            <img src={i13} alt="Shipping Illustration" className="w-full h-full object-cover" />
+          <div className="relative w-64 h-64 md:w-[500px] md:h-[500px] rounded-full overflow-hidden">
+            <img src="https://avatars.mds.yandex.net/i?id=5dd83667a01e12c7c3b4639b0b93ad77_l-5869613-images-thumbs&ref=rim&n=13&w=1280&h=800" alt="Shipping Illustration" className="w-full h-full object-cover" />
             
           </div>
         </div>

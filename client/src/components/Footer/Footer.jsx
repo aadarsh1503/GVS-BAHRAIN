@@ -21,7 +21,7 @@ const Footer = () => {
     setEmail(''); // Clear the input field after successful submission
   
     try {
-      const response = await fetch('https://gvs-cargo-1.onrender.com/subscribe-newsletter', {
+      const response = await fetch('http://localhost:5000/subscribe-newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

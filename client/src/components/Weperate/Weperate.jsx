@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaMapMarkedAlt, FaGlobeAfrica } from 'react-icons/fa';
-import Maps from "./Maps.jpg"
+import Maps from "./Maps.png"
 
 const Weperate = () => {
   const [modalContent, setModalContent] = useState(null); // State to track which modal is open
@@ -38,11 +38,11 @@ const Weperate = () => {
         <h2 className="text-xl lg:text-3xl lg:-ml-10 font-bold text-Graytext">Where We Operate:</h2>
 
         <button 
-          className="flex items-center justify-center lg:ml-7  hover:text-black bg-DarkYellow text-white py-2 px-4 lg:py-4 lg:px-8 rounded-full"
+          className="flex items-center justify-center lg:ml-3  hover:text-black bg-DarkYellow text-white py-2 px-4 lg:py-4 lg:px-8 rounded-full"
           onClick={handleUAEButtonClick}
         >
           <FaMapMarkedAlt className="text-lg mr-2 " />
-          <span className='text-white'>IN UAE</span>
+          <span className='text-white'>IN BAHRAIN</span>
         </button>
 
         <button 
@@ -73,9 +73,9 @@ const Weperate = () => {
             >
               &times;
             </button>
-            <h3 className="lg:text-2xl text-xl font-semibold mb-4">IN UAE</h3>
+            <h3 className="lg:text-2xl text-xl font-semibold mb-4">IN BAHRAIN</h3>
             <p className='mb-4'>
-              We operate in several UAE capitals, offering services that meet your demands nationwide quickly, safely, and with the transparency you need.
+              We operate in several BAHRAIN capitals, offering services that meet your demands nationwide quickly, safely, and with the transparency you need.
             </p>
             
             <button 
