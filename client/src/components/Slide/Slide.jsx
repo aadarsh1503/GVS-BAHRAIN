@@ -85,43 +85,44 @@ const Slide = () => {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 2,
                 }
             },
             {
                 breakpoint: 360,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 2,
                 }
             }
         ]
     };
 
     return (
-       <section className="py-10 w-[300px] lg:w-full lg:max-w-6xl mx-auto">
-    <div className="w-full px-4 md:px-1">
-        {isLoaded ? (
-            <Slider ref={sliderRef} {...settings}>
-                {images.map((src, index) => (
-                    <div key={index} className="slide-item">
-                        <a href={imageLinks[index]} target="_blank" rel="noopener noreferrer" className="image-link">
-                            <img
-                                src={src}
-                                alt={`Slide ${index + 1}`}
-                                className="object-contain w-full md:w-/4 mx-auto slide-image"
-                                style={{ maxHeight: '300px' }}
-                            />
-                        </a>
-                    </div>
-                ))}
-            </Slider>
-        ) : (
-            <div className="flex justify-center items-center" style={{ height: '300px' }}>
-                <span>Loading...</span>
-            </div>
-        )}
-    </div>
-</section>
+        <section className="py-10 max-w-7xl w-full mx-auto">
+        <div className="">
+            {isLoaded ? (
+                <Slider ref={sliderRef} {...settings}>
+                    {images.map((src, index) => (
+                        <div key={index} className="slide-item">
+                            <a href={imageLinks[index]} target="_blank" rel="noopener noreferrer" className="image-link">
+                                <img
+                                    src={src}
+                                    alt={`Slide ${index + 1}`}
+                                    className="object-contain w-full md:w-3/4 mx-auto slide-image"
+                                    style={{ maxHeight: '300px' }}
+                                />
+                            </a>
+                        </div>
+                    ))}
+                </Slider>
+            ) : (
+                <div className="flex justify-center items-center" style={{ height: '300px' }}>
+                    <span>Loading...</span>
+                </div>
+            )}
+        </div>
+    </section>
+    
 
     );
 };
