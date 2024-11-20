@@ -37,7 +37,7 @@ const AboutSection = () => {
       With a team of professionals highly committed to quality excellence, both in customer service and in the development of its services, GVS Cargo & Logistics is constantly improving its staff, concerned with the professional growth of each of its employees, through a daily training and qualification policy, based on the most rigorous international standards.
     </p>
     <p>
-      For GVS Cargo & Logistics, this has meant an important consolidation in the international trade market, where it is seen as an icon in this segment, both inside and outside Brazil, achieving complete customer satisfaction in each area in which it operates and building, together with them, several stories of growth, trust, and success.
+      For GVS Cargo & Logistics, this has meant an important consolidation in the international trade market, where it is seen as an icon in this segment, both inside and outside Bahrain, achieving complete customer satisfaction in each area in which it operates and building, together with them, several stories of growth, trust, and success.
     </p>
   </div>
 </div>

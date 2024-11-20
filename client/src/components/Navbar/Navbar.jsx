@@ -56,7 +56,7 @@ const Navbar = () => {
     <div className="flex flex-col font-roboto  lg:flex-row max-w-5xl mx-auto items-center space-y-4 lg:space-y-0 lg:space-x-6 text-gray-700">
       <div className="flex items-center space-x-2">
         <MdLocationOn className="text-DarkBlue text-5xl" />
-        <span className='text-sm text-left'>#22, Building 661, Road no 1208,  <br /> Block 712 Salmabad، 973, <br />Bahrain</span>
+        <span className='text-sm text-left'>Office 22, Building 661, Road no 1208,  <br /> Block 712 Salmabad - 973, <br />Bahrain</span>
       </div>
       <div className="flex items-center space-x-2">
         <FaPhoneAlt className="text-white bg-DarkBlue rounded text-4xl p-2" />
@@ -115,7 +115,7 @@ const Navbar = () => {
         {item === 'About Us' && (
           <div className="absolute hidden group-hover:flex flex-col z-10 bg-white  text-black   lg:w-[256px] -ml-2   rounded">
            <a href="/whoWeAre" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left">Who We Are</a>
-<a href="/whereinUAE" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Where We Operate in UAE</a>
+<a href="/whereinUAE" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Where We Operate in Bahrain</a>
 <a href="/operateWorld" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Where We Operate in the World</a>
 <a href="/missionvisionandvalues" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Mission, Vision, and Values</a>
 
