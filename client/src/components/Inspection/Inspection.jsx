@@ -9,8 +9,8 @@ function Inspection() {
       <div className="flex flex-col items-start font-roboto max-w-6xl lg:mt-32 mx-auto  p-4 lg:p-8 bg-white">
         <div className="mb-2 flex flex-col lg:flex-row mt-6 items-start justify-between w-full">
           <div className="flex-1 mb-4 lg:mb-0">
-            <h2 className="text-5xl text-black lg:ml-32 lg:mt-4 font-bold mb-1">
-            Fumigation
+            <h2 className="text-3xl text-Graytext lg:ml-40 lg:mt-4 font-bold mb-1">
+            FUMIGATION
             </h2>
             <div className="h-2 lg:w-[290px] mt-2 lg:ml-28 bg-yellow-500"></div>
           </div>

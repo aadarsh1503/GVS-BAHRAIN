@@ -56,7 +56,7 @@ const Navbar = () => {
     <div className="flex flex-col font-roboto  lg:flex-row max-w-5xl mx-auto items-center space-y-4 lg:space-y-0 lg:space-x-6 text-gray-700">
       <div className="flex items-center space-x-2">
         <MdLocationOn className="text-DarkBlue text-5xl" />
-        <span className='text-sm text-left'>Office 22, Building 661, Road no 1208,  <br /> Block 712 Salmabad - 973, <br />Bahrain</span>
+        <span className='text-sm text-left'>OFFICE 22, BLDG 661, RD 1208,  <br /> BLOCK 712 - SALMABAD,  <br />KINGDOM OF BAHRAIN</span>
       </div>
       <div className="flex items-center space-x-2">
         <FaPhoneAlt className="text-white bg-DarkBlue rounded text-4xl p-2" />

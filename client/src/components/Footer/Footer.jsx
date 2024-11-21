@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FaLinkedin, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
 import Foot from './Foot.jpg';
 import white from './white.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -62,7 +64,8 @@ const Footer = () => {
               <FaFacebook className="text-DarkBlue text-3xl" />
             </a>
             <a href="https://twitter.com/gvscargo" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-full">
-              <FaTwitter className="text-DarkBlue text-3xl" />
+            <FontAwesomeIcon icon={faXTwitter} className="text-DarkBlue text-3xl" />
+
             </a>
           </div>
 

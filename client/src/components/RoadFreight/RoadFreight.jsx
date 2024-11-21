@@ -9,7 +9,7 @@ function RoadFreight() {
       <div className="flex flex-col items-start max-w-6xl lg:mt-32 mx-auto  p-4 lg:p-8 bg-white">
         <div className="mb-2 flex flex-col lg:flex-row mt-6 items-start justify-between w-full">
           <div className="flex-1 mb-4 lg:mb-0">
-            <h2 className="text-3xl text-black lg:ml-48 lg:mt-4 font-bold mb-1">
+            <h2 className="text-3xl lg:ml-40 text-gray-700 lg:mt-4 font-bold mb-1">
               Road Freight
             </h2>
             <div className="h-1 lg:w-56 lg:ml-36 bg-yellow-500"></div>
