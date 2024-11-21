@@ -15,7 +15,7 @@ const ContactUs = () => {
     email: '',
     message: '',
   });
-  const [countryCode, setCountryCode] = useState('+1'); // Default to +1
+  const [countryCode, setCountryCode] = useState(''); // Default to +1
   const [recaptchaValue, setRecaptchaValue] = useState(null);
   const [successMessage, setSuccessMessage] = useState(false);
   const [uniqueId, setUniqueId] = useState('');
@@ -23,17 +23,18 @@ const ContactUs = () => {
   useEffect(() => {
     const fetchCountryCode = async () => {
       try {
-        const response = await fetch('https://ipapi.co/json/'); // Geolocation API (example: ipapi)
+        const response = await fetch('https://ipinfo.io/json?token=6b3f765fe8dfe5'); // ipinfo.io API with your token
         const data = await response.json();
-        const countryDialCode = getDialCodeByCountry(data.country_code);
+        const countryDialCode = getDialCodeByCountry(data.country);
         if (countryDialCode) setCountryCode(countryDialCode);
       } catch (error) {
         console.error('Error fetching geolocation:', error);
       }
     };
-
+  
     fetchCountryCode();
   }, []);
+  
 
   const getDialCodeByCountry = (countryCode) => {
     // Mapping of country codes to dial codes. Replace with a complete dataset if needed.
@@ -253,38 +254,41 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!recaptchaValue) {
       alert("Please verify you're not a robot.");
       return;
     }
-
+  
     if (!countryCode || !formData.telephone.trim()) {
       alert('Please make sure the country code and phone number are filled in.');
       return;
     }
-
+  
     const shortId = uuidv4().split('-')[0];
     setUniqueId(shortId);
-
+  
     setSuccessMessage(true);
-
+  
     const formPayload = {
       ...formData,
       ddd: countryCode,
       telephone: formData.telephone,
       uniqueId: shortId,
     };
-
+  
     try {
       await fetch('http://localhost:5000/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formPayload),
       });
-
+  
+      // Reset everything after 3 seconds to give user feedback
       setTimeout(() => {
         setSuccessMessage(false);
+  
+        // Reset form data to initial state
         setFormData({
           company: '',
           name: '',
@@ -292,16 +296,22 @@ const ContactUs = () => {
           email: '',
           message: '',
         });
-        setCountryCode('+1'); // Reset to default
-        setRecaptchaValue(null);
-        setUniqueId('');
+  
+        // Don't reset country code here, keep it as fetched from IP
+        setRecaptchaValue(null); // Reset recaptcha
+        setUniqueId(''); // Reset unique ID
+  
+        // This will trigger a full reset of the component state
+        e.target.reset(); // Reset form fields as well
       }, 3000);
+  
     } catch (error) {
       console.error('Error:', error);
       alert('Error submitting form');
       setSuccessMessage(false);
     }
   };
+  
 
   return (
     <div className="max-w-md mx-auto mt-12">
