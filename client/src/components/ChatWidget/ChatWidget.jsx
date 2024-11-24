@@ -20,7 +20,7 @@ const ChatWidget = () => {
     const message =
       messageType === "support"
         ? "I need support"
-        : "I would like to contact your team";
+        : "I need support";
 
     // Check if the user is on a mobile device
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
