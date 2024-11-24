@@ -16,6 +16,7 @@ const Navbar = () => {
     'Freights',
     'Services',
     'Tools',
+    'Email'
   ];
 
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -77,7 +78,7 @@ const Navbar = () => {
       <div className="container max-w-6xl mx-auto flex items-center justify-between">
     {/* Desktop Navigation */}
     <ul className="hidden sm:flex  space-x-3 bg-white py-2 px-10 rounded-full">
-        {['Home', 'About Us', 'Freights', 'Services', 'Tools'].map((item) => (
+        {['Home', 'About Us', 'Freights', 'Services', 'Tools', 'Email'].map((item) => (
             <li className="relative group" key={item}>
                 {item === 'Home' ? (
                     // Link only for 'Home' item
@@ -147,7 +148,31 @@ const Navbar = () => {
           <a href="/incoterms" className="py-4 hover:bg-YellowDark px-4 text-sm">Incoterms </a>
             <a href="/container" className="py-4 hover:bg-YellowDark px-4 text-sm">Container</a>
           </div>
+          
         )}
+{item === 'Email' && (
+  <div className="absolute hidden group-hover:flex flex-col z-10 bg-white text-black lg:w-[256px] -ml-2 rounded">
+    <a
+      href="mailto:customercare@gvscargo.com"
+      className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left"
+    >
+      Customer Care
+    </a>
+    <a
+      href="mailto:sales@gvscargo.com"
+      className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left"
+    >
+      Seller Care
+    </a>
+    <a
+      href="mailto:info@gvscargo.com"
+      className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6"
+    >
+      Business Enquiries
+    </a>
+  </div>
+)}
+
       </li>
     ))}
   </ul>
@@ -247,6 +272,14 @@ const Navbar = () => {
               <a href="/operateWorld" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Where We Operate in the World</a>
               <a href="/missionvisionandvalues" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Mission, Vision, and Values</a>
             </div>
+          )}
+           {item === 'Email' && openDropdown === index && (
+            <div className="flex flex-col bg-gray-700 text-left items-start text-xs  text-white rounded mt-2">
+              <a  href="mailto:customercare@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Customer Care</a>
+              <a href="mailto:sales@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Seller Care</a>
+              <a  href="mailto:info@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Business Enquiries</a>
+            </div>
+
           )}
         </li>
       ))}
