@@ -14,8 +14,21 @@ const ContactUs = () => {
     telephone: '',
     email: '',
     message: '',
+    portOfLoading: '',
+    portOfDischarge: '',
+    commodity: '',
+    grossWeight: '',
+    dimensions: '', // for overall dimensions, if needed
+    boxesPallets: '',
+    boxPalletSize: '',
+    modeOfShipment: '',
+    length: '', // Added
+    width: '',  // Added
+    height: '', // Added
+    dimensionUnit: 'inch', // Default to inch
   });
-  const [countryCode, setCountryCode] = useState(''); // Default to +1
+  
+  const [countryCode, setCountryCode] = useState(''); 
   const [recaptchaValue, setRecaptchaValue] = useState(null);
   const [successMessage, setSuccessMessage] = useState(false);
   const [uniqueId, setUniqueId] = useState('');
@@ -34,15 +47,12 @@ const ContactUs = () => {
   
     fetchCountryCode();
   }, []);
-  
 
   const getDialCodeByCountry = (countryCode) => {
-    // Mapping of country codes to dial codes. Replace with a complete dataset if needed.
     const dialCodeMap = {
-
-        AD: '+376', // Andorra
-        AE: '+971', // United Arab Emirates
-        AF: '+93',  // Afghanistan
+      AD: '+376',
+      AE: '+971',
+      AF: '+93',  // Afghanistan
         AG: '+1-268', // Antigua and Barbuda
         AI: '+1-264', // Anguilla
         AL: '+355', // Albania
@@ -237,11 +247,10 @@ const ContactUs = () => {
         SH: '+290', // Saint Helena
         SI: '+386', // Slovenia
         SJ: '+47',  // Svalbard and Jan Mayen
-        SK: '+421', // Slovakia
-      
+        SK: '+421', // Slovakia
       // Add more country codes as needed
     };
-    return dialCodeMap[countryCode] || '+1'; // Fallback to +1 if country not found
+    return dialCodeMap[countryCode] || '+973';
   };
 
   const handleChange = (e) => {
@@ -254,161 +263,292 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!recaptchaValue) {
       alert("Please verify you're not a robot.");
       return;
     }
-  
+
     if (!countryCode || !formData.telephone.trim()) {
       alert('Please make sure the country code and phone number are filled in.');
       return;
     }
-  
+
     const shortId = uuidv4().split('-')[0];
     setUniqueId(shortId);
-  
+
     setSuccessMessage(true);
-  
+
     const formPayload = {
       ...formData,
       ddd: countryCode,
       telephone: formData.telephone,
       uniqueId: shortId,
     };
-  
+
     try {
       await fetch('http://localhost:5000/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formPayload),
       });
-  
-      // Reset everything after 3 seconds to give user feedback
+
       setTimeout(() => {
         setSuccessMessage(false);
-  
-        // Reset form data to initial state
         setFormData({
           company: '',
           name: '',
           telephone: '',
           email: '',
           message: '',
+          portOfLoading: '',
+          portOfDischarge: '',
+          commodity: '',
+          grossWeight: '',
+          dimensions: '',
+          boxesPallets: '',
+          boxPalletSize: '',
+          modeOfShipment: '',
         });
-  
-        // Don't reset country code here, keep it as fetched from IP
-        setRecaptchaValue(null); // Reset recaptcha
-        setUniqueId(''); // Reset unique ID
-  
-        // This will trigger a full reset of the component state
-        e.target.reset(); // Reset form fields as well
+        setRecaptchaValue(null);
+        setUniqueId('');
+        e.target.reset();
       }, 3000);
-  
+
     } catch (error) {
       console.error('Error:', error);
       alert('Error submitting form');
       setSuccessMessage(false);
     }
   };
-  
 
   return (
     <div className="max-w-md mx-auto mt-12">
-      {successMessage ? (
-        <div className="success-message flex items-center bg-DarkBlue text-white p-4 rounded-lg shadow-lg">
-          <AiOutlineCheckCircle className="checkmark text-5xl mr-4 animate-pulse" />
-          <span className="text-lg font-semibold">
-            Form submitted successfully! We'll get in touch with you shortly. Your reference ID is: {uniqueId}
-          </span>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded space-y-4">
-          <h2 className="text-2xl font-semibold text-left">Fill in the required fields*</h2>
-
-          <input
-            type="text"
-            name="company"
-            value={formData.company}
-            onChange={handleChange}
-            placeholder="Company *"
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            required
-          />
-
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Name *"
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            required
-          />
-
-          <div className="flex mb-4 space-x-2">
-            <div className="w-1/3">
-              <PhoneInput
-                country={'us'}
-                value={countryCode}
-                onChange={(value) => setCountryCode(value || '+1')}
-                placeholder="Select Country Code"
-                inputStyle={{
-                  width: '100%',
-                  height: '40px',
-                  border: '1px solid #D1D5DB',
-                  color: '#4B5563',
-                }}
-              />
-            </div>
-            <div className="w-2/3">
-              <input
-                type="text"
-                name="telephone"
-                value={formData.telephone}
-                onChange={handleChange}
-                placeholder="Phone Number *"
-                className="w-full border border-gray-300 rounded px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                required
-              />
-            </div>
-          </div>
-
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email *"
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            required
-          />
-
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Message *"
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            rows="4"
-            required
-          />
-
-          <ReCAPTCHA
-            sitekey="6LeqpnkqAAAAAHNUm3Ey9nv2T0hmhl0Ym4L_yaTS"
-            onChange={(value) => setRecaptchaValue(value)}
-          />
-
-          <button type="submit" className="w-full py-2 text-white bg-yellow-500 rounded font-semibold hover:bg-yellow-600">
-            Send
-          </button>
-        </form>
-      )}
-
-      <div className="lg:-ml-48 -ml-32">
-        <LocationSection />
+    {successMessage ? (
+      <div className="success-message flex items-center bg-DarkBlue text-white p-4 rounded-lg shadow-lg">
+        <AiOutlineCheckCircle className="checkmark text-5xl mr-4 animate-pulse" />
+        <span className="text-lg font-semibold">
+          Form submitted successfully! We'll get in touch with you shortly. Your reference ID is: {uniqueId}
+        </span>
       </div>
+    ) : (
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded space-y-4">
+        <h2 className="text-2xl font-semibold text-left">Fill in the required fields*</h2>
+  
+        <input 
+          type="text" 
+          name="company" 
+          value={formData.company} 
+          onChange={handleChange} 
+          placeholder="Company *" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        <input 
+          type="text" 
+          name="name" 
+          value={formData.name} 
+          onChange={handleChange} 
+          placeholder="Name *" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        <div className="flex mb-4 space-x-2">
+          <div className="w-1/3">
+            <PhoneInput 
+              country={'bh'} 
+              value={countryCode} 
+              onChange={(value) => setCountryCode(value || '+973')} 
+              placeholder="Select Country Code" 
+              inputStyle={{ width: '100%', height: '40px', border: '1px solid #D1D5DB', color: '#4B5563' }} 
+              required 
+            />
+          </div>
+          <div className="w-2/3">
+            <input 
+              type="text" 
+              name="telephone" 
+              value={formData.telephone} 
+              onChange={handleChange} 
+              placeholder="Phone Number *" 
+              className="w-full border border-gray-300 rounded px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              required 
+            />
+          </div>
+        </div>
+  
+        <input 
+          type="email" 
+          name="email" 
+          value={formData.email} 
+          onChange={handleChange} 
+          placeholder="Email *" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        <input 
+          type="text" 
+          name="portOfLoading" 
+          value={formData.portOfLoading} 
+          onChange={handleChange} 
+          placeholder="Port of Loading" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        <input 
+          type="text" 
+          name="portOfDischarge" 
+          value={formData.portOfDischarge} 
+          onChange={handleChange} 
+          placeholder="Port of Discharge" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        <input 
+          type="text" 
+          name="commodity" 
+          value={formData.commodity} 
+          onChange={handleChange} 
+          placeholder="Commodity" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        <input 
+          type="text" 
+          name="grossWeight" 
+          value={formData.grossWeight} 
+          onChange={handleChange} 
+          placeholder="Gross Weight" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        {/* Dimensions in One Row */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-gray-700">Dimensions</h3>
+          <div className="flex items-center space-x-4">
+            {/* Length Input */}
+            <input
+              type="text"
+              name="length"
+              value={formData.length}
+              onChange={handleChange}
+              placeholder="Length"
+              className="w-20 p-2 border border-gray-300 rounded focus:outline-none"
+              required
+            />
+            {/* Width Input */}
+            <input
+              type="text"
+              name="width"
+              value={formData.width}
+              onChange={handleChange}
+              placeholder="Width"
+              className="w-20 p-2 border border-gray-300 rounded focus:outline-none"
+              required
+            />
+            {/* Height Input */}
+            <input
+              type="text"
+              name="height"
+              value={formData.height}
+              onChange={handleChange}
+              placeholder="Height"
+              className="w-20 p-2 border border-gray-300 rounded focus:outline-none"
+              required
+            />
+            {/* Unit Dropdown */}
+            <select
+              name="dimensionUnit"
+              value={formData.dimensionUnit}
+              onChange={handleChange}
+              className="p-1 border hidden lg:block border-gray-300 rounded focus:outline-none text-gray-700"
+              required
+            >
+              <option value="inch">Inch</option>
+              <option value="cm">Centimeter</option>
+            </select>
+          </div>
+        </div>
+        <select
+              name="dimensionUnit"
+              value={formData.dimensionUnit}
+              onChange={handleChange}
+              className="p-1 border lg:hidden sm:block border-gray-300 rounded focus:outline-none text-gray-700"
+              required
+            >
+              <option value="inch">Inch</option>
+              <option value="cm">Centimeter</option>
+            </select>
+  
+        <input 
+          type="text" 
+          name="boxesPallets" 
+          value={formData.boxesPallets} 
+          onChange={handleChange} 
+          placeholder="Number of Boxes/Pallets" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        <input 
+          type="text" 
+          name="boxPalletSize" 
+          value={formData.boxPalletSize} 
+          onChange={handleChange} 
+          placeholder="Size of Each Box/Pallet" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          required 
+        />
+  
+        {/* Mode of Shipment: Dropdown */}
+        <select
+          name="modeOfShipment"
+          value={formData.modeOfShipment}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none text-gray-700"
+          required
+        >
+          <option value="" disabled>
+            Mode of Shipment (Select One) *
+          </option>
+          <option value="Commercial">Commercial</option>
+          <option value="Personal">Personal</option>
+        </select>
+  
+        <textarea 
+          name="message" 
+          value={formData.message} 
+          onChange={handleChange} 
+          placeholder="Message *" 
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none" 
+          rows="4" 
+          required 
+        />
+  
+        <ReCAPTCHA sitekey="6LeqpnkqAAAAAHNUm3Ey9nv2T0hmhl0Ym4L_yaTS" onChange={(value) => setRecaptchaValue(value)} required />
+  
+        <button 
+          type="submit" 
+          className="w-full py-2 text-white bg-yellow-500 rounded font-semibold hover:bg-yellow-600"
+        >
+          Send
+        </button>
+      </form>
+    )}
+  
+    <div className="lg:-ml-48 -ml-32">
+      <LocationSection />
     </div>
+  </div>
+  
+
   );
 };
 
