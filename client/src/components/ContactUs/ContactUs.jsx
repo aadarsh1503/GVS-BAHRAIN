@@ -538,7 +538,7 @@ const ContactUs = () => {
   
 
   return (
-    <div className="max-w-md mx-auto mt-12">
+    <div className="lg:max-w-2xl max-w-md mx-auto mt-12">
     {successMessage ? (
       <div className="success-message flex items-center bg-DarkBlue text-white p-4 rounded-lg shadow-lg">
         <AiOutlineCheckCircle className="checkmark text-5xl mr-4 animate-pulse" />
