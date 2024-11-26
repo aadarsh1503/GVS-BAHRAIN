@@ -28,21 +28,26 @@ app.post('/send-email', async (req, res) => {
     message,
     uniqueId,
     portOfLoading,
+    portOfLoadingCity,
     portOfDischarge,
+    portOfDischargeCity,
     commodity,
     grossWeight,
+    weightUnit,
     length,
     width,
     height,
     dimensionUnit,
     boxesPallets,
     boxPalletSize,
+    boxPalletUnit,
     modeOfShipment,
   } = req.body;
 
   try {
     // Format dimensions
     const dimensions = `${length} ${dimensionUnit} × ${width} ${dimensionUnit} × ${height} ${dimensionUnit}`;
+    
 
     // Call the sendEmail function
     await sendEmail({
@@ -54,12 +59,16 @@ app.post('/send-email', async (req, res) => {
       message,
       uniqueId,
       portOfLoading,
+      portOfLoadingCity,
       portOfDischarge,
+      portOfDischargeCity,
       commodity,
       grossWeight,
+      weightUnit,
       dimensions,
       boxesPallets,
       boxPalletSize,
+      boxPalletUnit,
       modeOfShipment,
     });
 
@@ -70,6 +79,7 @@ app.post('/send-email', async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to send email', error: error.message });
   }
 });
+
 
 // Newsletter Subscription Endpoint
 app.post('/subscribe-newsletter', async (req, res) => {

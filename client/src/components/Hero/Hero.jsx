@@ -3,8 +3,7 @@ import Cards from '../Cards/Cards'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { FaMapMarkedAlt,FaGlobeAfrica } from 'react-icons/fa';
-import i8 from "./i8.jpg"
-import i13 from "./i13.png"
+
 import { useState , useEffect ,useRef } from 'react';
 import "./Hero.css"
 
@@ -12,21 +11,18 @@ import OurServices from '../OurServices/OurServices';
 import { useTranslation } from 'react-i18next';
 import Weperate from '../Weperate/Weperate';
 
-import one from "./one.png"
-import two from "./two.png"
-import three from "./three.png"
-import four from "./four.png"
-import five from "./five.png"
 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "./Hero.css"; // Your CSS file for custom styles
 import Slider from 'react-slick';
+import i1 from "./i1.jpg"
+import i2 from "./i2.jpg"
+import i3 from "./i3.jpg"
+import i4 from "./i4.png"
+import i5 from "./i5.jpg"
 
-const images = ["https://klikpajak.id/wp-content/uploads/2018/09/KlikPajak_Blog_Tarif-PPh-Impor-Akan-Naik-Ketahui-Penjelasan-Tarif-dan-Tujuannya.jpg",
-   "https://actionfreightinc.com/wp-content/uploads/2017/06/slide-2-plane-front.jpg",
-    "https://www.mysupplychaingroup.com/wp-content/uploads/2018/12/mysupplychaingroup-warehouse-2.jpg",
-     "https://wscdn-01.kapsarc.org/wp-content/uploads/2020/04/shutterstock_731927092.png", "https://cleanairpower.com/images/banners/banner-2.jpg"];
+const images = [i1,i2,i3,i4,i5];
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);

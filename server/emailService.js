@@ -12,12 +12,16 @@ export const sendEmail = async ({
   message,
   uniqueId,
   portOfLoading,
+  portOfLoadingCity,
   portOfDischarge,
+  portOfDischargeCity,
   commodity,
   grossWeight,
+  weightUnit,
   dimensions,
   boxesPallets,
   boxPalletSize,
+  boxPalletUnit,
   modeOfShipment,
 }) => {
   const transporter = nodemailer.createTransport({
@@ -42,13 +46,13 @@ export const sendEmail = async ({
       Message: ${message}
 
       --- Additional Information ---
-      Port of Loading: ${portOfLoading || 'N/A'}
-      Port of Discharge: ${portOfDischarge || 'N/A'}
+      Port of Loading: ${portOfLoading || 'N/A'} (City: ${portOfLoadingCity || 'N/A'})
+      Port of Discharge: ${portOfDischarge || 'N/A'} (City: ${portOfDischargeCity || 'N/A'})
       Commodity: ${commodity || 'N/A'}
-      Gross Weight: ${grossWeight || 'N/A'}
-      Dimensions (L×W×B): ${dimensions || 'N/A'}
+      Gross Weight: ${grossWeight || 'N/A'} ${weightUnit || ''}
+      Dimensions (L×W×H): ${dimensions || 'N/A'}
       Number of Boxes/Pallets: ${boxesPallets || 'N/A'}
-      Size of Each Box/Pallet: ${boxPalletSize || 'N/A'}
+      Size of Each Box/Pallet: ${boxPalletSize || 'N/A'} 
       Mode of Shipment: ${modeOfShipment || 'N/A'}
     `,
     replyTo: email,
