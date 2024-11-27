@@ -13,6 +13,10 @@ const countryList = [
   "Algeria",
   "Andorra",
   "Angola",
+  "India",
+  "Algeria",
+  "Andorra",
+  "Angola",
   "Antigua and Barbuda",
   "Argentina",
   "Armenia",
@@ -201,9 +205,29 @@ const countryList = [
   "Vietnam",
   "Yemen",
   "Zambia",
-  "Zimbabwe"
+  "Zimbabwe"
+  // Add more countries as needed
 ];
 
+const fetchCitiesByCountry = async (country) => {
+  try {
+    const response = await fetch(
+      `https://countriesnow.space/api/v0.1/countries/cities`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ country }),
+      }
+    );
+    const data = await response.json();
+    return data.data || [];
+  } catch (error) {
+    console.error('Error fetching cities:', error);
+    return [];
+  }
+};
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -228,13 +252,14 @@ const ContactUs = () => {
     length: '',
     width: '',
     height: '',
-
   });
 
   const [countryCode, setCountryCode] = useState('');
   const [recaptchaValue, setRecaptchaValue] = useState(null);
   const [successMessage, setSuccessMessage] = useState(false);
   const [uniqueId, setUniqueId] = useState('');
+  const [loadingCities, setLoadingCities] = useState([]);
+  const [dischargeCities, setDischargeCities] = useState([]);
 
   useEffect(() => {
     const fetchCountryCode = async () => {
@@ -451,9 +476,22 @@ const ContactUs = () => {
         SI: '+386', // Slovenia
         SJ: '+47',  // Svalbard and Jan Mayen
         SK: '+421', // Slovakia
+
+
       // Add more country codes as needed
     };
     return dialCodeMap[countryCode] || '+973';
+  };
+
+  const handleCountryChange = async (e, portType) => {
+    const selectedCountry = e.target.value;
+    setFormData((prev) => ({ ...prev, [portType]: selectedCountry }));
+
+    if (selectedCountry) {
+      const cities = await fetchCitiesByCountry(selectedCountry);
+      if (portType === 'portOfLoading') setLoadingCities(cities);
+      if (portType === 'portOfDischarge') setDischargeCities(cities);
+    }
   };
 
   const handleChange = (e) => {
@@ -608,61 +646,75 @@ const ContactUs = () => {
 
         {/* Port of Loading */}
         <div className="space-y-2">
-          <select
-            name="portOfLoading"
-            value={formData.portOfLoading}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            required
-          >
-            <option value="" disabled>
-              Select Port of Loading *
+        <select
+          name="portOfLoading"
+          value={formData.portOfLoading}
+          onChange={(e) => handleCountryChange(e, 'portOfLoading')}
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          required
+        >
+          <option value="" disabled>
+            Select Port of Loading *
+          </option>
+          {countryList.map((country, index) => (
+            <option key={index} value={country}>
+              {country}
             </option>
-            {countryList.map((country, index) => (
-              <option key={index} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            name="portOfLoadingCity"
-            value={formData.portOfLoadingCity}
-            onChange={handleChange}
-            placeholder="Enter City for Port of Loading"
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            required
-          />
-        </div>
+          ))}
+        </select>
+        <select
+          name="portOfLoadingCity"
+          value={formData.portOfLoadingCity}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          required
+        >
+          <option value="" disabled>
+            Select City for Port of Loading *
+          </option>
+          {loadingCities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        {/* Port of Discharge */}
-        <div className="space-y-2">
-          <select
-            name="portOfDischarge"
-            value={formData.portOfDischarge}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            required
-          >
-            <option value="" disabled>
-              Select Port of Discharge *
+      {/* Port of Discharge */}
+      <div className="space-y-2">
+        <select
+          name="portOfDischarge"
+          value={formData.portOfDischarge}
+          onChange={(e) => handleCountryChange(e, 'portOfDischarge')}
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          required
+        >
+          <option value="" disabled>
+            Select Port of Discharge *
+          </option>
+          {countryList.map((country, index) => (
+            <option key={index} value={country}>
+              {country}
             </option>
-            {countryList.map((country, index) => (
-              <option key={index} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            name="portOfDischargeCity"
-            value={formData.portOfDischargeCity}
-            onChange={handleChange}
-            placeholder="Enter City for Port of Discharge"
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-            required
-          />
-        </div>
+          ))}
+        </select>
+        <select
+          name="portOfDischargeCity"
+          value={formData.portOfDischargeCity}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          required
+        >
+          <option value="" disabled>
+            Select City for Port of Discharge *
+          </option>
+          {dischargeCities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
+      </div>
   
         <input 
           type="text" 
