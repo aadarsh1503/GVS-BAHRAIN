@@ -13,7 +13,6 @@ const countryList = [
   "Algeria",
   "Andorra",
   "Angola",
-  "India",
   "Algeria",
   "Andorra",
   "Angola",
@@ -209,19 +208,23 @@ const countryList = [
   // Add more countries as needed
 ];
 
+const cache = new Map();
+
 const fetchCitiesByCountry = async (country) => {
+  if (cache.has(country)) {
+    return cache.get(country);
+  }
   try {
     const response = await fetch(
       `https://countriesnow.space/api/v0.1/countries/cities`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ country }),
       }
     );
     const data = await response.json();
+    cache.set(country, data.data || []);
     return data.data || [];
   } catch (error) {
     console.error('Error fetching cities:', error);
@@ -260,6 +263,11 @@ const ContactUs = () => {
   const [uniqueId, setUniqueId] = useState('');
   const [loadingCities, setLoadingCities] = useState([]);
   const [dischargeCities, setDischargeCities] = useState([]);
+  const [showLoaderForLoading, setShowLoaderForLoading] = useState(false);
+  const [showSuccessForLoading, setShowSuccessForLoading] = useState(false);
+  
+  const [showLoaderForDischarge, setShowLoaderForDischarge] = useState(false);
+  const [showSuccessForDischarge, setShowSuccessForDischarge] = useState(false);
 
   useEffect(() => {
     const fetchCountryCode = async () => {
@@ -486,11 +494,37 @@ const ContactUs = () => {
   const handleCountryChange = async (e, portType) => {
     const selectedCountry = e.target.value;
     setFormData((prev) => ({ ...prev, [portType]: selectedCountry }));
-
+  
     if (selectedCountry) {
+      if (portType === 'portOfLoading') {
+        setShowLoaderForLoading(true);
+        setShowSuccessForLoading(false); // Reset success message for portOfLoading
+      }
+  
+      if (portType === 'portOfDischarge') {
+        setShowLoaderForDischarge(true);
+        setShowSuccessForDischarge(false); // Reset success message for portOfDischarge
+      }
+  
+      // Fetch cities based on selected country
       const cities = await fetchCitiesByCountry(selectedCountry);
+      
+      // Set cities for corresponding port type
       if (portType === 'portOfLoading') setLoadingCities(cities);
       if (portType === 'portOfDischarge') setDischargeCities(cities);
+      
+      // Hide loader and show success message after 2 seconds for the corresponding port type
+      setTimeout(() => {
+        if (portType === 'portOfLoading') {
+          setShowLoaderForLoading(false);
+          setShowSuccessForLoading(true);
+        }
+  
+        if (portType === 'portOfDischarge') {
+          setShowLoaderForDischarge(false);
+          setShowSuccessForDischarge(true);
+        }
+      }, 1000); // 2 seconds delay for animation
     }
   };
 
@@ -576,7 +610,7 @@ const ContactUs = () => {
   
 
   return (
-    <div className="lg:max-w-2xl max-w-md mx-auto mt-12">
+    <div className="lg:max-w-2xl max-w-md font-roboto mx-auto mt-12">
     {successMessage ? (
       <div className="success-message flex items-center bg-DarkBlue text-white p-4 rounded-lg shadow-lg">
         <AiOutlineCheckCircle className="checkmark text-5xl mr-4 animate-pulse" />
@@ -645,76 +679,132 @@ const ContactUs = () => {
         />
 
         {/* Port of Loading */}
-        <div className="space-y-2">
-        <select
-          name="portOfLoading"
-          value={formData.portOfLoading}
-          onChange={(e) => handleCountryChange(e, 'portOfLoading')}
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-          required
-        >
-          <option value="" disabled>
-            Select Port of Loading *
-          </option>
-          {countryList.map((country, index) => (
-            <option key={index} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
-        <select
-          name="portOfLoadingCity"
-          value={formData.portOfLoadingCity}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-          required
-        >
-          <option value="" disabled>
-            Select City for Port of Loading *
-          </option>
-          {loadingCities.map((city, index) => (
-            <option key={index} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className="space-y-4">
+  {/* Port of Loading Dropdown */}
+  <div className="relative">
+    <select
+      name="portOfLoading"
+      value={formData.portOfLoading}
+      onChange={(e) => handleCountryChange(e, 'portOfLoading')}
+      className="w-full p-2 border font-roboto border-gray-300 rounded focus:outline-none"
+      required
+    >
+      <option value="" disabled>
+        Select Country For Port of Loading *
+      </option>
+      {countryList.map((country, index) => (
+        <option key={index} value={country}>
+          {country}
+        </option>
+      ))}
+    </select>
 
-      {/* Port of Discharge */}
-      <div className="space-y-2">
-        <select
-          name="portOfDischarge"
-          value={formData.portOfDischarge}
-          onChange={(e) => handleCountryChange(e, 'portOfDischarge')}
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-          required
-        >
-          <option value="" disabled>
-            Select Port of Discharge *
-          </option>
-          {countryList.map((country, index) => (
-            <option key={index} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
-        <select
-          name="portOfDischargeCity"
-          value={formData.portOfDischargeCity}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded focus:outline-none"
-          required
-        >
-          <option value="" disabled>
-            Select City for Port of Discharge *
-          </option>
-          {dischargeCities.map((city, index) => (
-            <option key={index} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
+    {showLoaderForLoading ? (
+      <div className="absolute top-3 right-4">
+        <div className="animate-spin border-2 border-t-transparent border-green-500 rounded-full w-5 h-5"></div>
       </div>
+    ) : showSuccessForLoading && (
+      <div className="absolute top-3 right-4 text-green-500 flex items-center gap-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+        <span className="text-sm">Looks good</span>
+      </div>
+    )}
+  </div>
+
+    {/* Port of Loading City Dropdown */}
+    <select
+    name="portOfLoadingCity"
+    value={formData.portOfLoadingCity}
+    onChange={handleChange}
+    className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+    required
+  >
+    <option value="" disabled>
+      Select City for Port of Loading *
+    </option>
+    {loadingCities.map((city, index) => (
+      <option key={index} value={city}>
+        {city}
+      </option>
+    ))}
+  </select>
+</div>
+      {/* Port of Discharge */}
+     <div className="space-y-4">
+     <div className="relative">
+    <select
+      name="portOfDischarge"
+      value={formData.portOfDischarge}
+      onChange={(e) => handleCountryChange(e, 'portOfDischarge')}
+      className="w-full p-2 border font-roboto border-gray-300 rounded focus:outline-none"
+      required
+    >
+      <option value="" disabled>
+        Select Country For Port of Discharge *
+      </option>
+      {countryList.map((country, index) => (
+        <option key={index} value={country}>
+          {country}
+        </option>
+      ))}
+    </select>
+
+    {showLoaderForDischarge ? (
+      <div className="absolute top-3 right-4">
+        <div className="animate-spin border-2 border-t-transparent border-green-500 rounded-full w-5 h-5"></div>
+      </div>
+    ) : showSuccessForDischarge && (
+      <div className="absolute top-3 right-4 text-green-500 flex items-center gap-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+        <span className="text-sm">Looks good</span>
+      </div>
+    )}
+  </div>
+   
+  <select
+    name="portOfDischargeCity"
+    value={formData.portOfDischargeCity}
+    onChange={handleChange}
+    className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+    required
+  >
+    <option value="" disabled>
+      Select City for Port of Discharge *
+    </option>
+    {dischargeCities.map((city, index) => (
+      <option key={index} value={city}>
+        {city}
+      </option>
+    ))}
+  </select>
+   </div>
+   
   
         <input 
           type="text" 
@@ -791,7 +881,7 @@ const ContactUs = () => {
               name="dimensionUnit"
               value={formData.dimensionUnit}
               onChange={handleChange}
-              className="p-1 border hidden lg:block border-gray-300 rounded focus:outline-none text-gray-700"
+              className="p-2 border hidden lg:block border-gray-300 rounded focus:outline-none text-gray-700"
               required
             >
               <option value="inch">Inch</option>

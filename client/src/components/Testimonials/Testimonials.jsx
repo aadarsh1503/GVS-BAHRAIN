@@ -75,7 +75,7 @@ const Testimonials = () => {
                   : "scale-90 opacity-60 w-64 transform transition-transform"}`}
             >
               <div
-                className={`absolute -top-10 flex justify-center items-center w-24 h-24 rounded-full overflow-hidden border-4 ${index === 1 ? "border-lightgreen" : "border-gray-200"}`}
+                className={`absolute -top-10 flex justify-center items-center w-24 h-24 rounded-full overflow-hidden border-4 ${index === 1 ? "border-DarkBlue" : "border-gray-200"}`}
               >
                 <img
                   src={testimonial.image}
@@ -84,7 +84,7 @@ const Testimonials = () => {
                 />
               </div>
               <div className="text-5xl text-lightblue mt-4 lg:mt-10 ml-0 lg:-ml-56">“</div>
-              <p className="text-lightblue font-bold mb-1">{testimonial.name}</p>
+              <p className="text-DarkBlue font-bold mb-1">{testimonial.name}</p>
               <p className="text-gray-600 max-w-7xl text-center">{testimonial.text}</p>
               <div className="text-5xl text-lightblue ml-0 lg:ml-56 mt-2">”</div>
             </div>
