@@ -214,12 +214,53 @@ const fetchCitiesByCountry = async (country) => {
   if (cache.has(country)) {
     return cache.get(country);
   }
+
+  // Predefined list of cities/ports for Bahrain
+  const bahrainCities = [
+    "Khalifa Bin Salman Port (KBSP) (Hidd)",
+    "Mina Salman Port (Manama)",
+    "Sitra Industrial Port (Sitra)",
+    "Bahrain International Airport",
+  ];
+
+  // Predefined list of cities/ports for UAE
+  const uaePorts = [
+    "Jebel Ali Port (Dubai)",
+    "Port Rashid (Dubai)",
+    "Mina Zayed Port (Abu Dhabi)",
+    "Khalifa Port (Abu Dhabi)",
+    "Sharjah Port (Khalid Port) (Sharjah)",
+    "Hamriyah Port (Sharjah)",
+    "Fujairah Port (Fujairah)",
+    "Port of Khor Fakkan (Sharjah)",
+    "Ruwais Port (Abu Dhabi)",
+    "Umm Al Quwain Port (Umm Al Quwain)",
+    "Ajman Port (Ajman)",
+    "Dubai International Airport (DXB)",
+    "Al Maktoum International Airport (DWC)",
+    "Abu Dhabi International Airport (AUH)",
+    "Sharjah International Airport (SHJ)",
+    "Ras Al Khaimah International Airport (RKT)",
+  ];
+
+  // Return predefined lists for Bahrain and UAE
+  if (country === "Bahrain") {
+    cache.set(country, bahrainCities);
+    return bahrainCities;
+  }
+
+  if (country === "United Arab Emirates") {
+    cache.set(country, uaePorts);
+    return uaePorts;
+  }
+
+  // Fetch cities for other countries
   try {
     const response = await fetch(
       `https://countriesnow.space/api/v0.1/countries/cities`,
       {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ country }),
       }
     );
@@ -227,10 +268,11 @@ const fetchCitiesByCountry = async (country) => {
     cache.set(country, data.data || []);
     return data.data || [];
   } catch (error) {
-    console.error('Error fetching cities:', error);
+    console.error("Error fetching cities:", error);
     return [];
   }
 };
+
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
