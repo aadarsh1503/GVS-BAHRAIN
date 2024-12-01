@@ -2,42 +2,51 @@ import React, { useState } from 'react';
 import Bounce from '../Bounce/Bounce';
 import Slide from '../Slide/Slide';
 import ColorBar from '../Colorbar/Colorbar';
+import i1 from "./i1.jpg";
+import i2 from "./i2.jpg";
+import i3 from "./i3.avif";
+import i4 from "./i4.jpg";
 
 const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: "John Doe",
-      text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      image: "https://images01.nicepage.com/a1389d7bc73adea1e1c1fb7e/f625e3501ea153e0acad867f/pexels-photo-9668543.jpeg",
+      name: "Jose Rizal",
+      text: "Reliable and Efficient Partner Their team was incredibly responsive and efficient. They handled our complex international shipment with ease, ensuring timely delivery to our clients. We're impressed with their commitment to customer satisfaction and their ability to navigate global logistics challenges",
+      address: "Cebu City, Cebu",
+      image: i3,
     },
     {
       id: 2,
-      name: "Jane Smith",
-      text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      image: "https://plus.unsplash.com/premium_photo-1672373830660-4655ca9de6c3?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFsZSUyMG9mZmljZXxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Rohan Verma",
+      text: "Seamless Global Shipping We've been using their services for years, and they consistently exceed our expectations. Their seamless global shipping solutions have streamlined our supply chain and reduced costs. We highly recommend them to businesses of all sizes",
+      address: "Bangalore, Karnataka",
+      image: i2,
     },
     {
       id: 3,
-      name: "Alex Johnson",
-      text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      image: "",
+      name: "Noor Al-Maktoum",
+      text: "Personalized Service and Expertise Their personalized service and expertise in international logistics are second to none. They took the time to understand our unique needs and provided tailored solutions. Their team is always available to answer our questions and provide updates, giving us peace of mind",
+      address: "Dubai Marina, Dubai",
+      image: i1,
     },
     {
       id: 4,
-      name: "Emily Davis",
-      text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      image: "https://media.istockphoto.com/id/2003613572/photo/smiling-bearded-man-in-glasses-at-a-casual-business-meeting.webp?a=1&b=1&s=612x612&w=0&k=20&c=E6AxIWxGEEqdXFxRCpWM77mFqrv19U2gV11mCnljs3g=",
+      name: "Ali Al-Fahim",
+      text: "Efficient and Transparent Logistics Solutions Their efficiency and transparency have set a new standard for us. From managing documents to on-time deliveries, they’ve ensured a smooth experience every step of the way. Their proactive approach has significantly improved our operations.",
+      address: "Jumeirah, Dubai",
+      image: i4,
     },
   ];
 
   const [current, setCurrent] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(null); // Track expanded testimonial
 
-  const handlePrev = () => {
+  const handleNext = () => {
     setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  const handleNext = () => {
+  const handlePrev = () => {
     setCurrent((prev) => (prev + 1) % testimonials.length);
   };
 
@@ -47,19 +56,22 @@ const Testimonials = () => {
     testimonials[(current + 2) % testimonials.length],
   ];
 
+  const truncateText = (text, lines) => {
+    const maxChars = lines * 50; // Approximate character count for 3 lines
+    return text.length > maxChars ? text.substring(0, maxChars) + "..." : text;
+  };
+
   return (
-    <div>
-    <div className=" py-10">
-      <div className="md:text-2xl text-2xl  text-lightblue text-center font-bold max-w-5xl mx-auto mb-20">
+    <div className=" space-y-8">
+      <div className="lg:text-3xl mt-9 -mb-9 text-2xl lg:ml-44 ml-4 text-lightblue text-center font-bold max-w-5xl mx-auto ">
         OUR TESTIMONIALS
       </div>
-      <h1 className="h-2 w-10 lg:w-16 bg-lightblue  ml-4 lg:ml-44 -mt-12 lg:-mt-16"></h1>
-      
+
       {/* Desktop View */}
       <div className="hidden lg:flex justify-center items-center">
         {/* Left Arrow */}
         <button
-          onClick={handleNext}
+          onClick={handlePrev}
           className="text-gray-600 hover:text-gray-800 p-4 bg-gray-200 rounded-full focus:outline-none mx-4"
         >
           &#8592;
@@ -71,8 +83,8 @@ const Testimonials = () => {
               key={testimonial.id}
               className={`relative transition-all duration-1000 ease-in-out flex flex-col items-center bg-white shadow-md p-6 rounded-lg
                 ${index === 1
-                  ? "scale-110 opacity-100 h-86 w-72 transform shadow-xl transition-transform"
-                  : "scale-90 opacity-60 w-64 transform transition-transform"}`}
+                  ? "scale-110 opacity-100 h-[456px] w-72 transform shadow-xl transition-transform"
+                  : "scale-90 opacity-60 w-72 transform transition-transform"}`}
             >
               <div
                 className={`absolute -top-10 flex justify-center items-center w-24 h-24 rounded-full overflow-hidden border-4 ${index === 1 ? "border-DarkBlue" : "border-gray-200"}`}
@@ -83,17 +95,20 @@ const Testimonials = () => {
                   className={`object-cover w-full h-full ${index === 1 ? "scale-110" : "scale-100"}`}
                 />
               </div>
-              <div className="text-5xl text-lightblue mt-4 lg:mt-10 ml-0 lg:-ml-56">“</div>
+              <div className="text-5xl text-DarkYellow mt-4 lg:mt-10 ml-0 lg:-ml-56">“</div>
               <p className="text-DarkBlue font-bold mb-1">{testimonial.name}</p>
-              <p className="text-gray-600 max-w-7xl text-center">{testimonial.text}</p>
-              <div className="text-5xl text-lightblue ml-0 lg:ml-56 mt-2">”</div>
+              <p className="text-gray-600 max-w-7xl text-center">
+                {index === 1 ? testimonial.text : truncateText(testimonial.text, 3)}
+              </p>
+              <p className="text-gray-500 mt-2">{testimonial.address}</p>
+              <div className="text-5xl text-DarkYellow ml-0 lg:ml-56 mt-2">”</div>
             </div>
           ))}
         </div>
 
         {/* Right Arrow */}
         <button
-          onClick={handlePrev}
+          onClick={handleNext}
           className="text-gray-600 hover:text-gray-800 p-4 bg-gray-200 rounded-full focus:outline-none mx-4"
         >
           &#8594;
@@ -102,7 +117,7 @@ const Testimonials = () => {
 
       {/* Mobile View */}
       <div className="grid grid-cols-1 sm:grid-cols-1 gap-8 lg:hidden mt-10 px-4">
-        {testimonials.map((testimonial) => (
+        {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
             className="flex flex-col items-center bg-white shadow-md p-6 rounded-lg"
@@ -117,14 +132,26 @@ const Testimonials = () => {
               />
             </div>
             <div className="text-lightblue font-bold mb-1">{testimonial.name}</div>
-            <p className="text-gray-600 max-w-7xl text-center">{testimonial.text}</p>
+            <p className="text-gray-500 mt-2">{testimonial.address}</p>
+            
+            <p className="text-gray-600 max-w-7xl text-center">
+              {expandedIndex === index ? testimonial.text : truncateText(testimonial.text, 3)}
+            </p>
+
+            <div className="flex justify-center space-x-2 mt-4">
+              <button
+                className={`h-2 w-2 rounded-full ${expandedIndex === index ? 'bg-lightblue' : 'bg-gray-300'}`}
+                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)} // Toggle expanded state
+              ></button>
+            </div>
           </div>
         ))}
       </div>
-    </div>
+
     <Bounce />
     <Slide />
     <ColorBar />
+
     </div>
   );
 };
