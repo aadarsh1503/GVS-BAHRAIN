@@ -34,7 +34,7 @@ const Testimonials = () => {
       id: 4,
       name: "Ali Al-Fahim",
       text: "Efficient and Transparent Logistics Solutions Their efficiency and transparency have set a new standard for us. From managing documents to on-time deliveries, they’ve ensured a smooth experience every step of the way. Their proactive approach has significantly improved our operations.",
-      address: "Jumeirah, Dubai",
+      address: "Al Rayyan, Qatar",
       image: i4,
     },
   ];

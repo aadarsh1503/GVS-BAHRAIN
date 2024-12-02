@@ -87,20 +87,20 @@ const Slide = () => {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                 }
             },
             {
                 breakpoint: 360,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                 }
             }
         ]
     };
 
     return (
-        <section className="py-10 max-w-7xl w-full mx-auto">
+        <section className="py-10 lg:max-w-7xl lg:w-full w-[200px] mx-auto">
         <div className="">
             {isLoaded ? (
                 <Slider ref={sliderRef} {...settings}>
