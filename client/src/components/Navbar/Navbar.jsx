@@ -36,7 +36,7 @@ const Navbar = () => {
     <header className="bg-DarkBlue">
       {/* Top Bar */}
       <div className="flex justify-between max-w-4xl mx-auto font-roboto items-center px-4 py-1 text-white text-sm">
-  <span>Welcome to GVS Cargo & Logistics</span>
+  <span>Wlecome to Global Vision Solution “GVS Cargo & Logistics"</span>
   <div className='mt-1'>
 <LanguageSwitcher />
 </div>
@@ -117,8 +117,8 @@ const Navbar = () => {
           <div className="absolute hidden group-hover:flex flex-col z-10 bg-white  text-black   lg:w-[256px] -ml-2   rounded">
            <a href="/whoWeAre" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left">Who We Are</a>
            <a href="/testimonials" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left">Our Testimonials</a>
-<a href="/whereinUAE" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Where We Operate in Bahrain</a>
-<a href="/operateWorld" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Where We Operate in the World</a>
+<a href="/whereinUAE" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">We Operate in Bahrain & GCC</a>
+<a href="/operateWorld" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">We Operate WorldWide</a>
 <a href="/missionvisionandvalues" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Mission, Vision, and Values</a>
 
           </div>
@@ -163,7 +163,7 @@ const Navbar = () => {
       href="mailto:sales@gvscargo.com"
       className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left"
     >
-      Seller Care
+      Sales Team
     </a>
     <a
       href="mailto:info@gvscargo.com"
@@ -270,15 +270,15 @@ const Navbar = () => {
             <div className="flex flex-col bg-gray-700 text-left items-start text-xs text-white rounded mt-2">
               <a href="/whoWeAre" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Who We Are</a>
               <a href="/testimonials" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Our Testimonials</a>
-              <a href="/whereinUAE" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Where We Operate in UAE</a>
-              <a href="/operateWorld" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Where We Operate in the World</a>
+              <a href="/whereinUAE" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin"> We Operate in Bahrain & GCC</a>
+              <a href="/operateWorld" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin"> We Operate WorldWide</a>
               <a href="/missionvisionandvalues" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Mission, Vision, and Values</a>
             </div>
           )}
            {item === 'Email' && openDropdown === index && (
             <div className="flex flex-col bg-gray-700 text-left items-start text-xs  text-white rounded mt-2">
               <a  href="mailto:customercare@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Customer Care</a>
-              <a href="mailto:sales@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Seller Care</a>
+              <a href="mailto:sales@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Sales Team</a>
               <a  href="mailto:info@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Business Enquiries</a>
             </div>
 
