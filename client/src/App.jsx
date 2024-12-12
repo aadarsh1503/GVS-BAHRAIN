@@ -28,10 +28,12 @@ import ContactUs from "./components/ContactUs/ContactUs";
 import ChatWidget from "./components/ChatWidget/ChatWidget";
 import Slide from "./components/Slide/Slide";
 import Testimonials from "./components/Testimonials/Testimonials";
+import GlobalLoader from "./components/GlobalLoader/GlobalLoader";
 
 function App() {
   return (
     <Router>
+    <GlobalLoader />
       <Navbar />
       <ChatWidget />
       <Routes>

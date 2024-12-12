@@ -15,8 +15,8 @@ const Bounce = () => {
     { title: 'STUFFING & CONTAINER', src: two },
     { title: 'SWAPNING & CONTAINER', src: three},
     { title: 'BOARDING COMP.', src: four },
-    { title: 'PERISHABLE PRODUCTS', src: five},
-    { title: 'IMO PRODUCTS', src: six },
+    { title: 'PERISHABLE GOODS', src: five},
+    { title: 'IMO GOODS', src: six },
     { title: 'CARGO CONSOLIDATION', src: seven },
     { title: 'INTERNATIONAL DESTINATIONS', src: eight },
   ];
@@ -24,7 +24,7 @@ const Bounce = () => {
   return (
     <section className="text-center max-w-5xl mx-auto py-10 overflow-hidden">
       <h2 className="text-3xl font-bold text-gray-500 mb-8">
-        Our Projects Include:
+        Our Services Include:
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
         {projects.map((project, index) => (

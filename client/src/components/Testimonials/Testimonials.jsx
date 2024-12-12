@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Bounce from '../Bounce/Bounce';
 import Slide from '../Slide/Slide';
 import ColorBar from '../Colorbar/Colorbar';
-import i1 from "./i1.jpg";
+import i69 from "./i69.jpg";
 import i2 from "./i2.jpg";
 import i3 from "./i3.avif";
 import i4 from "./i4.jpg";
@@ -25,10 +25,10 @@ const Testimonials = () => {
     },
     {
       id: 3,
-      name: "Noor Al-Maktoum",
+      name: "Abdul-Raouf",
       text: "Personalized Service and Expertise Their personalized service and expertise in international logistics are second to none. They took the time to understand our unique needs and provided tailored solutions. Their team is always available to answer our questions and provide updates, giving us peace of mind",
       address: "Dubai Marina, Dubai",
-      image: i1,
+      image: i69,
     },
     {
       id: 4,

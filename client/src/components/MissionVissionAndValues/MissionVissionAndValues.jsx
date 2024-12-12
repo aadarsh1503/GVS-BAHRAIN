@@ -30,10 +30,7 @@ const MissionVissionAndValues = () => {
   <div className="w-full lg:w-1/3 px-4">
     <h2 className="text-2xl lg:text-4xl font-bold tracking-wider mb-2 lg:mb-4">VALUES</h2>
     <p className="text-sm lg:text-base">
-      Integrity – Being honest with yourself, with others, and with the law;<br />
-      Responsibility – Taking and complying;<br />
-      Excellence – Overcoming to surprise;<br />
-      Competence – making the best decision for the best result.
+    Integrity ,Responsibility ,Excellence ,Competence<br />We are committed to upholding integrity, taking responsibility, striving for excellence, and demonstrating competence in everything we do.
     </p>
   </div> 
 </div>
