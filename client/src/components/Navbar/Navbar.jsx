@@ -1,127 +1,165 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPhoneAlt, FaWhatsapp, FaGlobe } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
-import { useState } from 'react';
-import { FaChevronDown, FaTimes ,FaBars  } from 'react-icons/fa';
+import { FaChevronDown,FaBars ,FaTimes  } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import GVS from "./GVS.png"
+import GVS from "./GVS.png";
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 
 const Navbar = () => {
-  
-  const items = [
-    'Home',
-    'About Us',
-    'Freights',
-    'Services',
-    'Tools',
-    'Email'
-  ];
-
+  const items = ['Home', 'About Us', 'Freights', 'Services', 'Tools', 'Email'];
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const handleToggleDropdown = (index) => {
     setOpenDropdown(openDropdown === index ? null : index);
   };
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState('Home');
 
-
-    
-    
+  const [selectedItem, setSelectedItem] = useState();
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    // Set the selected item based on the current path
+    const path = window.location.pathname;
+    if (path.includes('whoWeAre')) {
+      setSelectedItem('About Us');
+    } else if (path.includes('testimonials')) {
+      setSelectedItem('About Us');
+    } else if (path.includes('whereinBahrain&GCC')) {
+      setSelectedItem('About Us');
+    } else if (path.includes('operateWorld')) {
+      setSelectedItem('About Us');
+    } else if (path.includes('airFreight')) {
+      setSelectedItem('Freights');
+    } else if (path.includes('seaFreight')) {
+      setSelectedItem('Freights');
+    } else if (path.includes('roadFreight')) {
+      setSelectedItem('Freights');
+    } else if (path.includes('stuffingUnloading')) {
+      setSelectedItem('Services');
+    } else if (path.includes('lcl')) {
+      setSelectedItem('Services');
+    } else if (path.includes('fcl')) {
+      setSelectedItem('Services');
+    } else if (path.includes('customClearance')) {
+      setSelectedItem('Services');
+    } else if (path.includes('dgr')) {
+      setSelectedItem('Services');
+    } else if (path.includes('inspection')) {
+      setSelectedItem('Services');
+    } else if (path.includes('packaging')) {
+      setSelectedItem('Services');
+    } else if (path.includes('storage')) {
+      setSelectedItem('Services');
+    } else if (path.includes('commercial')) {
+      setSelectedItem('Services');
+    } else if (path.includes('insurance')) {
+      setSelectedItem('Services');
+    } else if (path.includes('incoterms')) {
+      setSelectedItem('Tools');
+    } else if (path.includes('container')) {
+      setSelectedItem('Tools');
+    } else {
+      setSelectedItem('Home');
+    }
+  }, []); // Empty dependency array to run only once on mount
 
   return (
     <div>
-    <header className="bg-DarkBlue">
-      {/* Top Bar */}
-      <div className="flex justify-between max-w-4xl mx-auto font-roboto items-center px-4 py-1 text-white text-sm">
-  <span>Wlecome to Global Vision Solution “GVS Cargo & Logistics"</span>
-  <div className='mt-1'>
-<LanguageSwitcher />
-</div>
-</div>
-
-
+      <header className="bg-DarkBlue">
+        {/* Top Bar */}
+        <div className="flex justify-between max-w-4xl mx-auto font-roboto items-center px-4 py-1 text-white text-sm">
+          <span>Welcome to Global Vision Solution “GVS Cargo & Logistics"</span>
+          <div className="mt-1">
+            <LanguageSwitcher />
+          </div>
+        </div>
       </header>
 
       {/* Main Navbar */}
       <div className="bg-white py-6">
-  <div className="container mx-auto max-w-4xl flex flex-col lg:flex-row justify-between items-center">
-    {/* Logo */}
-    <div className="mb-6 lg:mb-0">
-      <img src={GVS} alt="GVS Cargo & Logistics" className="h-24 W-44" />
-    </div>
+        <div className="container mx-auto max-w-4xl flex flex-col lg:flex-row justify-between items-center">
+          {/* Logo */}
+          <div className="mb-6 lg:mb-0">
+            <img src={GVS} alt="GVS Cargo & Logistics" className="h-24 W-44" />
+          </div>
 
-    {/* Contact Info */}
-    <div className="flex flex-col font-roboto  lg:flex-row max-w-5xl mx-auto items-center space-y-4 lg:space-y-0 lg:space-x-6 text-gray-700">
-      <div className="flex items-center space-x-2">
-        <MdLocationOn className="text-DarkBlue text-5xl" />
-        <span className='text-sm text-left'>OFFICE 22, BLDG 661, RD 1208,  <br /> BLOCK 712 - SALMABAD,  <br />KINGDOM OF BAHRAIN</span>
+          {/* Contact Info */}
+          <div className="flex flex-col font-roboto lg:flex-row max-w-5xl mx-auto items-center space-y-4 lg:space-y-0 lg:space-x-6 text-gray-700">
+            <div className="flex items-center space-x-2">
+              <MdLocationOn className="text-DarkBlue text-5xl" />
+              <span className="text-sm text-left">
+                OFFICE 22, BLDG 661, RD 1208, <br /> BLOCK 712 - SALMABAD, <br />KINGDOM OF BAHRAIN
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaPhoneAlt className="text-white bg-DarkBlue rounded text-4xl p-2" />
+              <span className="text-sm">+973 17491444</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaWhatsapp className="text-white bg-DarkBlue text-4xl p-1" />
+              <span className="text-sm">+973 17491444</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center space-x-2">
-        <FaPhoneAlt className="text-white bg-DarkBlue rounded text-4xl p-2" />
-        <span className='text-sm '>+973 17491444
-        </span>
-      </div>
-      <div className="flex items-center space-x-2">
-        <FaWhatsapp className="text-white bg-DarkBlue text-4xl p-1" />
-        <span className='text-sm '>+973 17491444</span>
-      </div>
-    </div>
-  </div>
-</div>
-
 
       {/* Navigation Menu */}
       <nav className="bg-DarkBlue font-roboto py-7">
-      <div className="container max-w-6xl mx-auto flex items-center justify-between">
-    {/* Desktop Navigation */}
-    <ul className="hidden sm:flex  space-x-3 bg-white py-2 px-10 rounded-full">
-        {['Home', 'About Us', 'Freights', 'Services', 'Tools', 'Email'].map((item) => (
-            <li className="relative group" key={item}>
+        <div className="container max-w-6xl mx-auto flex items-center justify-between">
+          {/* Desktop Navigation */}
+          <ul className="hidden sm:flex space-x-3 bg-white py-2 px-10 rounded-full">
+            {items.map((item) => (
+              <li className="relative group" key={item}>
                 {item === 'Home' ? (
-                    // Link only for 'Home' item
-                    <a href="/">
-                        <button
-                            className={`text-black py-2 px-6 flex items-center min-w-[100px] relative`}
-                            onClick={() => setSelectedItem(item)}
-                        >
-                            {item}
-                            <span
-                                className={`absolute bottom-0 font-roboto left-0 w-full h-1 bg-DarkBlue transition-opacity duration-300 ${
-                                    selectedItem === item || 'group-hover:opacity-100 opacity-0'
-                                }`}
-                            ></span>
-                        </button>
-                    </a>
-                ) : (
-                    // No link for other items
+                  // Link only for 'Home' item
+                  <a href="/">
                     <button
-                        className={`text-black font-roboto py-2 px-4 flex items-center min-w-[100px] relative`}
-                        onClick={() => setSelectedItem(item)}
+                      className={`text-black py-2 px-6 flex items-center min-w-[100px] relative`}
+                      onClick={() => setSelectedItem(item)}
                     >
-                        {item}
-                        <FaChevronDown className="ml-2" />
-                        <span
-                            className={`absolute bottom-0 left-0 w-full h-1 bg-DarkBlue transition-opacity duration-300 ${
-                                selectedItem === item || 'group-hover:opacity-100 opacity-0'
-                            }`}
-                        ></span>
+                      {item}
+                      <span
+                        className={`absolute bottom-0 font-roboto left-0 w-full h-1 bg-DarkBlue transition-opacity duration-300 ${
+                          selectedItem === item || 'group-hover:opacity-100 opacity-0'
+                        }`}
+                      ></span>
                     </button>
+                  </a>
+                ) : (
+                  // No link for other items
+                  <button
+                    className={`text-black font-roboto py-2 px-4 flex items-center min-w-[100px] relative`}
+                    onClick={() => setSelectedItem(item)}
+                  >
+                    {item}
+                    <FaChevronDown className="ml-2" />
+                    <span
+                      className={`absolute bottom-0 left-0 w-full h-1 bg-DarkBlue transition-opacity duration-300 ${
+                        selectedItem === item || 'group-hover:opacity-100 opacity-0'
+                      }`}
+                    ></span>
+                  </button>
                 )}
-          
 
-        {/* Dropdown Options based on each item */}
-        {item === 'About Us' && (
-          <div className="absolute hidden group-hover:flex flex-col z-10 bg-white  text-black   lg:w-[256px] -ml-2   rounded">
-           <a href="/whoWeAre" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left">Who We Are</a>
-           <a href="/testimonials" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left">Our Testimonials</a>
-<a href="/whereinUAE" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">We Operate in Bahrain & GCC</a>
-<a href="/operateWorld" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">We Operate WorldWide</a>
-<a href="/missionvisionandvalues" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">Mission, Vision, and Values</a>
-
-          </div>
+                {/* Dropdown Options based on each item */}
+                {item === 'About Us' && (
+                  <div className="absolute hidden group-hover:flex flex-col z-10 bg-white text-black lg:w-[256px] -ml-2 rounded">
+                    <a href="/whoWeAre" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left">
+                      Who We Are
+                    </a>
+                    <a href="/testimonials" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6 text-left">
+                      Our Testimonials
+                    </a>
+                    <a href="/whereinBahrain&GCC" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">
+                      We Operate in Bahrain & GCC
+                    </a>
+                    <a href="/operateWorld" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">
+                      We Operate Worldwide
+                    </a>
+                    <a href="/missionvisionandvalues" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins px-6">
+                      Mission, Vision, and Values
+                    </a>
+                  </div>
         )}
         {item === 'Freights' && (
           <div className="absolute hidden group-hover:flex flex-col z-10 bg-white text-black  shadow-lg p-2  lg:w-[150px] -ml-2 rounded">

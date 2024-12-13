@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./GlobalLoader.css";
-import gvs from "./gvs.png"
+import gvs from "./gvs.png";
 
 const GlobalLoader = () => {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
-        const handleStart = () => setLoading(true);
-        const handleStop = () => setTimeout(() => setLoading(false), 2000); // Show for 3 seconds
+        // Check if the loader has already been shown in this session
+        const hasSeenLoader = sessionStorage.getItem("hasSeenLoader");
 
-        handleStart(); // Start loading on route change
-        handleStop();  // Stop loading after a delay
-    }, [location]); // Run whenever the route changes
+        if (!hasSeenLoader) {
+            setLoading(true); // Show the loader
+            sessionStorage.setItem("hasSeenLoader", "true"); // Mark that the loader has been shown in this session
+
+            // Hide the loader after 2 seconds (adjustable time)
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+        }
+    }, []); // Run only once when the component is first mounted (on initial page load)
 
     return loading ? (
         <div className="loader-overlay bg-white">
