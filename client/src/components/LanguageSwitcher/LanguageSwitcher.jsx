@@ -75,7 +75,7 @@ const LanguageSwitcher = () => {
                         src="https://t3.ftcdn.net/jpg/00/66/61/74/360_F_66617490_w7bC64aJjLgIJc4iBRN1QawdvhV9SVuF.jpg"
                         alt="Switch to Arabic"
                         onClick={() => changeLanguage('ar')}
-                        className="cursor-pointer w-10 h-10 rounded-full transition-transform duration-300 hover:scale-110"
+                        className="cursor-pointer w-7 h-7 rounded-full transition-transform duration-300 hover:scale-110"
                     />
                     <span class="text-sm text-white font-semibold">Ar</span>
                 </div>
@@ -85,7 +85,7 @@ const LanguageSwitcher = () => {
                         src="https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg"
                         alt="Switch to English"
                         onClick={() => changeLanguage('en')}
-                        className="cursor-pointer w-10 h-10 rounded-full transition-transform duration-300 hover:scale-110"
+                        className="cursor-pointer w-7 h-7 rounded-full transition-transform duration-300 hover:scale-110"
                     />
                     <span class="text-sm text-white font-semibold">En</span>
                 </div>
