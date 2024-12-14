@@ -11,7 +11,7 @@ function CollapsibleSection({ title, description }) {
 
   return (
     
-    <div className='bg-  '>
+    <div className='  '>
     <div className=" font-roboto lg:max-w-7xl   bg-white  lg:mx-auto ">
       <div
         className="flex  bg-YellowLight lg:px-4  outline-white border outline-1 lg:w-[1280px] lg:py-2 cursor-pointer"
@@ -23,7 +23,7 @@ function CollapsibleSection({ title, description }) {
         <div className="font-bold text-start items-center font-roboto justify-center text-lg">{title}</div>
       </div>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen' : '-h-10'}`}
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'sm-min-h-screen lg:max-h-screen' : '-h-10'}`}
       >
         {isOpen && (
           <div className="text-start lg:mt-4 lg:ml-56 border-yellow-400">

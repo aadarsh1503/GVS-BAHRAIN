@@ -640,7 +640,7 @@ const ContactUs = () => {
     };
   
     try {
-      await fetch('http://localhost:5000/send-email', {
+      await fetch('/api/mail/send_to_a_mail.php', { // Updated API URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formPayload),
@@ -698,6 +698,7 @@ const ContactUs = () => {
       setSuccessMessage(false);
     }
   };
+  
   
 
   return (
