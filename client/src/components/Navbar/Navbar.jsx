@@ -308,7 +308,7 @@ const Navbar = () => {
             <div className="flex flex-col bg-gray-700 text-left items-start text-xs text-white rounded mt-2">
               <a href="/whoWeAre" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Who We Are</a>
               <a href="/testimonials" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Our Testimonials</a>
-              <a href="/whereinUAE" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin"> We Operate in Bahrain & GCC</a>
+              <a href="/whereinBahrain&GCC" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin"> We Operate in Bahrain & GCC</a>
               <a href="/operateWorld" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin"> We Operate WorldWide</a>
               <a href="/missionvisionandvalues" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Mission, Vision, and Values</a>
             </div>
