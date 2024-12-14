@@ -98,8 +98,8 @@ const Hero = () => {
     <h2 className="lg:text-2xl text-xl flex items-center mt-4">
       <FontAwesomeIcon icon={faAngleDoubleRight} className="text-lg text-DarkYellow mx-2" />
       Air <FontAwesomeIcon icon={faAngleDoubleRight} className="text-lg text-DarkYellow mx-2" />
-      Sea <FontAwesomeIcon icon={faAngleDoubleRight} className="text-lg text-DarkYellow mx-2" />
-      Road
+      Road <FontAwesomeIcon icon={faAngleDoubleRight} className="text-lg text-DarkYellow mx-2" />
+      Sea
     </h2>
   </div>
 </div>
