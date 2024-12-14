@@ -14,7 +14,7 @@ const Cards = () => {
           />
         
         <div className="bg-DarkYellow p-6 w-full">
-          <h3 className="text-xl font-roboto text-gray-600 text-center font-semibold">Air</h3>
+          <h3 className="text-xl font-roboto text-gray-600 text-center font-semibold">Air Freight</h3>
           <p className="text-center text-gray-500 text-base mt-2">
             With safety, speed and transparency, GVS Cargo & Logistics collects, accommodates, ships, tracks and delivers anywhere in the world.
           </p>
@@ -32,7 +32,7 @@ const Cards = () => {
           />
        
         <div className="bg-DarkYellow p-6 w-full">
-          <h3 className="text-xl font-roboto text-gray-600 text-center font-semibold">Road</h3>
+          <h3 className="text-xl font-roboto text-gray-600 text-center font-semibold">Road Freight</h3>
           <p className="text-center text-gray-500 text-base mt-2">
             GVS Cargo & Logistics is widely consolidated to offer you its entire infrastructure in road freight transport services.
           </p>
@@ -50,7 +50,7 @@ const Cards = () => {
           />
         
         <div className="bg-DarkYellow p-6 w-full">
-          <h3 className="text-xl font-roboto text-gray-600 text-center font-semibold">Maritime</h3>
+          <h3 className="text-xl font-roboto text-gray-600 text-center font-semibold">Maritime Freight</h3>
           <p className="text-center text-gray-500 text-base mt-2">
             We offer the best conditions for chartering ships for special cargo and/or IMO (Cargo of dangerous goods).
           </p>

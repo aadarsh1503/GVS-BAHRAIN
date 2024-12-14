@@ -164,8 +164,9 @@ const Navbar = () => {
         {item === 'Freights' && (
           <div className="absolute hidden group-hover:flex flex-col z-10 bg-white text-black  shadow-lg p-2  lg:w-[150px] -ml-2 rounded">
             <a href="/airFreight" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins">Air Freight</a>
-            <a href="/seaFreight" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins">Sea Freight</a>
             <a href="/roadFreight" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins">Road Freight</a>
+            <a href="/seaFreight" className="py-3 hover:bg-YellowDark p-2 font-thin text-sm font-poppins">Sea Freight</a>
+
           </div>
         )}
         {item === 'Services' && (
@@ -292,8 +293,9 @@ const Navbar = () => {
           {item === 'Freights' && openDropdown === index && (
             <div className="flex flex-col bg-gray-700 text-left items-start text-xs  text-white rounded mt-2">
               <a href="/airFreight" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Air Freight</a>
-              <a href="/seaFreight" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Sea Freight</a>
               <a href="/roadFreight" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Road Freight</a>
+              <a href="/seaFreight" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Sea Freight</a>
+
             </div>
           )}
 
