@@ -8,7 +8,7 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 
 const Navbar = () => {
-  const items = ['Home', 'About Us', 'Freights', 'Services', 'Tools', 'Email'];
+  const items = ['Home', 'About Us', 'Freights', 'Services', 'Tools', 'ContactUs'];
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const handleToggleDropdown = (index) => {
@@ -190,7 +190,7 @@ const Navbar = () => {
           </div>
           
         )}
-{item === 'Email' && (
+{item === 'ContactUs' && (
   <div className="absolute hidden group-hover:flex flex-col z-10 bg-white text-black lg:w-[256px] -ml-2 rounded">
     <a
       href="mailto:customercare@gvscargo.com"
@@ -315,7 +315,7 @@ const Navbar = () => {
               <a href="/missionvisionandvalues" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Mission, Vision, and Values</a>
             </div>
           )}
-           {item === 'Email' && openDropdown === index && (
+           {item === 'ContactUs' && openDropdown === index && (
             <div className="flex flex-col bg-gray-700 text-left items-start text-xs  text-white rounded mt-2">
               <a  href="mailto:customercare@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Customer Care</a>
               <a href="mailto:sales@gvscargo.com" className="w-full py-3 px-4 hover:bg-yellow-500 font-thin">Sales Team</a>
