@@ -11,7 +11,7 @@ function CollapsibleSection({ title, description }) {
 
   return (
     
-    <div className='bg-DarkBlue  '>
+    <div className='bg-  '>
     <div className=" font-roboto lg:max-w-7xl   bg-white  lg:mx-auto ">
       <div
         className="flex  bg-YellowLight lg:px-4  outline-white border outline-1 lg:w-[1280px] lg:py-2 cursor-pointer"
@@ -41,7 +41,7 @@ function Incoterms() {
   return (
     <div>
         <IncotermsSection />
-    <div className="  py-20 bg-DarkBlue outline-white border-1  font-roboto ">
+    <div className="  py-20 bg- outline-white border-1  font-roboto ">
       <CollapsibleSection
   title="GROUP E"
   description={
