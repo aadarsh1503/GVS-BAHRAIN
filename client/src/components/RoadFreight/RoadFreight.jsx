@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Bounce from '../Bounce/Bounce';
 import Slide from '../Slide/Slide';
 import ColorBar from '../Colorbar/Colorbar';
+import "./Road.css"
 
 function RoadFreight() {
+  useEffect(() => {
+    // Scroll to top when the component is mounted
+    window.scrollTo(100, 0);
+  }, []); // Empty dependency array ensures it runs only once when the component mounts
+
   return (
     <div>
       <div className="flex flex-col items-start max-w-6xl lg:mt-32 mx-auto  p-4 lg:p-8 bg-white">
@@ -28,9 +34,7 @@ function RoadFreight() {
       <div className='mb-10 mt-10'>
         <Slide />
       </div>
-     
-        <ColorBar />
-      
+      <ColorBar />
     </div>
   );
 }

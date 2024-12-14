@@ -2,8 +2,13 @@ import React from 'react';
 import Bounce from '../Bounce/Bounce';
 import Slide from '../Slide/Slide';
 import ColorBar from '../Colorbar/Colorbar';
+import { useEffect } from 'react';
 
 function AirFreightSection() {
+  useEffect(() => {
+    // Scroll to top when the component is mounted
+    window.scrollTo(100, 0);
+  }, []); 
   return (
     <div>
       <div className="flex flex-col items-start max-w-5xl lg:mt-32 mx-auto text-gray-700 p-4 lg:p-8 bg-white">

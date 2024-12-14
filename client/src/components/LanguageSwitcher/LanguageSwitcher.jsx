@@ -59,32 +59,41 @@ const LanguageSwitcher = () => {
     }, []);
 
     return (
-        <div>
-            {loading && (
-                <div className="loading-overlay">
-                    <div className="loading-spinner"></div>
-                </div>
-            )}
-            <div className="flex items-center justify-between">
-                <div className="font-bold text-lg"></div>
-                <div id="google_translate_element" className="hidden"></div>
-                <div className="language-switcher flex gap-2">
-                <img
+<div>
+    {loading && (
+        <div className="loading-overlay fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="loading-spinner border-4 border-t-4 border-gray-200 rounded-full w-16 h-16 animate-spin"></div>
+        </div>
+    )}
+    <div className="flex items-center justify-between p-  rounded-lg shadow-lg">
+        <div className="font-bold text-xl text-white"></div>
+        <div id="google_translate_element" className="hidden"></div>
+        <div className="language-switcher flex gap-4 items-center">
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <img
                         src="https://t3.ftcdn.net/jpg/00/66/61/74/360_F_66617490_w7bC64aJjLgIJc4iBRN1QawdvhV9SVuF.jpg"
                         alt="Switch to Arabic"
                         onClick={() => changeLanguage('ar')}
-                        className="cursor-pointer w-12  h-auto "
+                        className="cursor-pointer w-10 h-10 rounded-full transition-transform duration-300 hover:scale-110"
                     />
+                    <span class="text-sm text-white font-semibold">Ar</span>
+                </div>
+
+                <div class="flex items-center space-x-2">
                     <img
                         src="https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg"
                         alt="Switch to English"
                         onClick={() => changeLanguage('en')}
-                        className="cursor-pointer w-12 h-auto "
+                        className="cursor-pointer w-10 h-10 rounded-full transition-transform duration-300 hover:scale-110"
                     />
-                  
+                    <span class="text-sm text-white font-semibold">En</span>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
     );
 };
 
