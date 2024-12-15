@@ -656,7 +656,7 @@ const ContactUs = () => {
 
     try {
         // Send email data (including form data in the message)
-        const emailResponse = await fetch('/api', {
+        const emailResponse = await fetch('https://rozanaevents.com/mail/send_to_a_mail.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(emailData), // Send email data only
