@@ -656,7 +656,7 @@ const ContactUs = () => {
 
     try {
         // Send email data (including form data in the message)
-        const emailResponse = await fetch('/api/mail/send_to_a_mail.php', {
+        const emailResponse = await fetch('/api', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(emailData), // Send email data only
