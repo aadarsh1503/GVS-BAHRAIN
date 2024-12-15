@@ -613,91 +613,113 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!recaptchaValue) {
-      alert("Please verify you're not a robot.");
-      return;
+        alert("Please verify you're not a robot.");
+        return;
     }
-  
+
     if (!countryCode || !formData.telephone.trim()) {
-      alert('Please make sure the country code and phone number are filled in.');
-      return;
+        alert('Please make sure the country code and phone number are filled in.');
+        return;
     }
-  
+
     const shortId = uuidv4().split('-')[0];
     setUniqueId(shortId);
-  
+
     setSuccessMessage(true);
-  
-    const formPayload = {
-      ...formData,
-      ddd: countryCode,
-      telephone: formData.telephone,
-      uniqueId: shortId,
-      weight: `${formData.grossWeight} ${formData.weightUnit}`,
-      dimensions: `${formData.length} ${formData.dimensionUnit} × ${formData.width} ${formData.dimensionUnit} × ${formData.height} ${formData.dimensionUnit}`,
-      boxPalletSize: `${formData.boxPalletSize} ${formData.boxPalletUnit}`,
+
+    // Dynamically include form data in the email message
+    const emailData = {
+        to: "gvscargo.bah@gmail.com",
+        from: "gvscargo.bah@gmail.com",
+      
+        subject: `Form Submission with ${formData.email}`,
+
+        message: `
+               Unique ID: ${shortId}
+                Name: ${formData.name}
+                Company: ${formData.company}
+                Telephone: ${countryCode} ${formData.telephone}
+                Email: ${formData.email}
+                Port of Loading: ${formData.portOfLoading}, ${formData.portOfLoadingCity}
+                Port of Discharge: ${formData.portOfDischarge}, ${formData.portOfDischargeCity}
+                Commodity: ${formData.commodity}
+                Weight: ${formData.grossWeight} ${formData.weightUnit}
+                Dimensions: ${formData.length} ${formData.dimensionUnit} × ${formData.width} ${formData.dimensionUnit} × ${formData.height} ${formData.dimensionUnit}
+                Box/Pallet Size: ${formData.boxPalletSize} ${formData.boxPalletUnit}
+                Mode Of Shipment: ${formData.modeOfShipment}
+                Message: ${formData.message}
+          
+        `, // Dynamically formatted HTML message
     };
-  
+
     try {
-      await fetch('/api/mail/send_to_a_mail.php', { // Updated API URL
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formPayload),
-      });
-  
-      // Reset all form-related states after submission
-      setTimeout(() => {
-        setSuccessMessage(false);
-  
-        // Reset form data
-        setFormData({
-          company: '',
-          name: '',
-          telephone: '',
-          email: '',
-          message: '',
-          portOfLoading: '',
-          portOfLoadingCity: '',
-          portOfDischarge: '',
-          portOfDischargeCity: '',
-          commodity: '',
-          grossWeight: '',
-          weightUnit: 'kg', // Resetting weight unit
-          dimensions: '',
-          dimensionUnit: 'inch', // Resetting dimension unit
-          boxesPallets: '',
-          boxPalletSize: '',
-          boxPalletUnit: 'cm', // Resetting box/pallet size unit
-          modeOfShipment: '',
-          length: '',
-          width: '',
-          height: '',
+        // Send email data (including form data in the message)
+        const emailResponse = await fetch('/api/mail/send_to_a_mail.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(emailData), // Send email data only
         });
-  
-        // Reset other states
-        setRecaptchaValue(null);
-        setUniqueId('');
-        setLoadingCities([]);
-        setDischargeCities([]);
-        setShowLoaderForLoading(false);
-        setShowSuccessForLoading(false);
-        setShowLoaderForDischarge(false);
-        setShowSuccessForDischarge(false);
-        setShowLoaderForCity(false);
-        setShowSuccessForCity(false);
-        setShowLoaderForDischargeCity(false);
-        setShowSuccessForDischargeCity(false);
-  
-        // Reset form inputs
-        e.target.reset();
-      }, 3000); // 3 seconds delay for success message
+
+        if (!emailResponse.ok) {
+            throw new Error('Failed to send email');
+        }
+
+        // Reset all form-related states after submission
+        setTimeout(() => {
+            setSuccessMessage(false);
+
+            // Reset form data
+            setFormData({
+                company: '',
+                name: '',
+                telephone: '',
+                email: '',
+                message: '',
+                portOfLoading: '',
+                portOfLoadingCity: '',
+                portOfDischarge: '',
+                portOfDischargeCity: '',
+                commodity: '',
+                grossWeight: '',
+                weightUnit: 'kg',
+                dimensions: '',
+                dimensionUnit: 'inch',
+                boxesPallets: '',
+                boxPalletSize: '',
+                boxPalletUnit: 'cm',
+                modeOfShipment: '',
+                length: '',
+                width: '',
+                height: '',
+            });
+
+            // Reset other states
+            setRecaptchaValue(null);
+            setUniqueId('');
+            setLoadingCities([]);
+            setDischargeCities([]);
+            setShowLoaderForLoading(false);
+            setShowSuccessForLoading(false);
+            setShowLoaderForDischarge(false);
+            setShowSuccessForDischarge(false);
+            setShowLoaderForCity(false);
+            setShowSuccessForCity(false);
+            setShowLoaderForDischargeCity(false);
+            setShowSuccessForDischargeCity(false);
+
+            // Reset form inputs
+            e.target.reset();
+        }, 3000); // 3 seconds delay for success message
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error submitting form');
-      setSuccessMessage(false);
+        console.error('Error:', error);
+        alert('Error submitting form');
+        setSuccessMessage(false);
     }
-  };
+};
+
+
   
   
 
