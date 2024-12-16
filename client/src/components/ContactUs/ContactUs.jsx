@@ -661,6 +661,7 @@ const ContactUs = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(emailData), // Send email data only
         });
+        console.log(emailResponse);
 
         if (!emailResponse.ok) {
             throw new Error('Failed to send email');
