@@ -12,39 +12,74 @@ const Footer = () => {
   const handleSubscribe = async () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
-    // Check if the email is valid
+    // Validate email
     if (!email || !emailRegex.test(email)) {
       setMessage('Please enter a valid email address.');
       return;
     }
   
-    // Show success message immediately when the button is clicked
+    // Show success message immediately
     setMessage('Thank you for subscribing!');
-    setEmail(''); // Clear the input field after successful submission
+    setEmail(''); // Clear input field
+  
+    // Prepare email data for the user
+    const userEmailData = {
+      to: email, // Send email to the user
+      from: "gvscargo.bah@gmail.com", // Sender's email (your email)
+      subject: "Welcome to the Newsletter!",
+      message: `
+        Welcome to Global Vision Solution!
+        Thank you for subscribing to our newsletter. We’re excited to share our latest updates with you!
+        Stay connected,
+        Global Vision Solution Team
+      `,
+    };
+  
+
+    const adminEmailData = {
+      to: "gvscargo.bah@gmail.com", 
+      from: "gvscargo.bah@gmail.com", 
+      subject: "New Subscriber Alert!",
+      message: `
+        A new user has subscribed to the newsletter!
+        Email: ${email}
+      `,
+    };
   
     try {
-      const response = await fetch('http://localhost:5000/subscribe-newsletter', {
+      // Send the email data to the API to notify the admin
+      const adminResponse = await fetch('https://rozanaevents.com/mail/send_to_a_mail.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify(adminEmailData), 
       });
   
-      const result = await response.json();
-      if (!response.ok) {
-        setMessage(result.message || 'Something went wrong, please try again.');
+      if (!adminResponse.ok) {
+        setMessage('Failed to notify admin. Please try again.');
+      }
+  
+      // Now send the email to the user
+      const userResponse = await fetch('https://rozanaevents.com/mail/send_to_a_mail.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userEmailData), // Send email data to user
+      });
+  
+      if (!userResponse.ok) {
+        setMessage('Failed to send subscription confirmation email. Please try again.');
       } else {
-        // Set a 3-second delay to refresh the component
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        setMessage('Thanks For Subscribing!');
       }
     } catch (error) {
-      setMessage('Error sending request. Please try again.');
+      setMessage('An error occurred. Please try again.');
       console.error(error);
     }
   };
+  
   return (
     <footer className="bg-DarkBlue lg:h-[450px] text-gray-200 py-8">
       <div className="container mx-auto flex flex-col lg:flex-row max-w-7xl justify-between items-center px-4">
