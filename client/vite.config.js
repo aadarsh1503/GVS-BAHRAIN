@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://rozanaevents.com/mail/send_to_a_mail.php', // The base URL of your API
+        target: 'https://gvscargo.com/send_to_a_mail.php', // The base URL of your API
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''), // Remove `/api` prefix when forwarding the request
       },
