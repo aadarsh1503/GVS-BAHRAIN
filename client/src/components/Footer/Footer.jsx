@@ -61,7 +61,7 @@ const Footer = () => {
       }
   
       // Now send the email to the user
-      const userResponse = await fetch('https://rozanaevents.com/mail/send_to_a_mail.php', {
+      const userResponse = await fetch('https://gvscargo.com/send_to_a_mail.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
