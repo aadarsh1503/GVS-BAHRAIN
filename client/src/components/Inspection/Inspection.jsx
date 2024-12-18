@@ -10,13 +10,14 @@ function Inspection() {
         <div className="mb-2 flex flex-col lg:flex-row mt-6 items-start justify-between w-full">
           <div className="flex-1 mb-4 lg:mb-0">
             <h2 className="text-3xl text-Graytext lg:ml-40 lg:mt-4 font-bold mb-1">
-            FUMIGATION
+            INSPECTION
             </h2>
             <div className="h-2 lg:w-[290px] mt-2 lg:ml-28 bg-yellow-500"></div>
           </div>
           <div className="w-full lg:w-1/2 ml-4 lg:ml-0">
             <p className="text-md mt-4 font-semibold text-Graytext">
-            Fumigation procedure required by the Federal Revenue Service for cargo with wooden packaging and containers. Fumigation is a pest control and disinfection procedure using dry methods.
+            Inspection ensures that the cargo complies with all regulatory requirements and maintains its quality during transportation and delivery.
+            Our experienced team conducts thorough inspections to identify potential risks, guaranteeing the safety, integrity, and smooth handling of your merchandise throughout its journey.
             </p>
             
           </div>
